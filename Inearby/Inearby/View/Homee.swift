@@ -12,8 +12,8 @@ struct Home: View {
     // MARK: View Properties
     //    @State var currentTab: Tab = .home
     @Namespace var animation
-    
-    // MARK: Carousel Properties
+ 
+    @AppStorage("key7")  var shouldshowonb = true
     @State var Indecscur: Int = 0
     
     var body: some View {
@@ -36,22 +36,28 @@ struct Home: View {
                         // MARK: YOUR CUSTOM CELL VIEW
                             
                             Button {
-                                
+
                             } label: {
                                     Image(game.picofgame)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: cardSize.width, height: cardSize.height)
                                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                    
+
                                 }
+                        
+                        
+                        
                         
                     }
                 
                 
                 
                 
-            }
+            }.ignoresSafeArea()
+            .fullScreenCover(isPresented: $shouldshowonb ){
+            ConnectFourView(shouldshowonb: $shouldshowonb)
+                 }.ignoresSafeArea(.all)
             .padding([.horizontal,.top],15)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background {
@@ -91,7 +97,7 @@ struct Home: View {
 
         HStack{
             VStack(alignment: .leading, spacing: 6) {
-                Text("usernamen2929")
+                Text(NSUserName())
                     .fontWeight(.semibold)
 
                 .font(.title2)

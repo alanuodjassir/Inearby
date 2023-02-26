@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		51EF79AB29AB955400D6F02D /* TreeAntGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EF79AA29AB955400D6F02D /* TreeAntGame.swift */; };
-		EF15515D29AAC51C00B969FB /* ConnnectFourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF15515C29AAC51C00B969FB /* ConnnectFourViewModel.swift */; };
 		EF15515F29AAC54200B969FB /* ConnnectFourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF15515E29AAC54200B969FB /* ConnnectFourView.swift */; };
 		EF15516129AAC55A00B969FB /* ConnectFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF15516029AAC55900B969FB /* ConnectFour.swift */; };
 		EF228F2629A93095009F1F47 /* InearbyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF228F2529A93095009F1F47 /* InearbyTests.swift */; };
@@ -21,6 +20,9 @@
 		EFCC253329A92AE2009DD6A3 /* games.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC253029A92AE2009DD6A3 /* games.swift */; };
 		EFCC253429A92AE2009DD6A3 /* caustomcards.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC253129A92AE2009DD6A3 /* caustomcards.swift */; };
 		EFCC253529A92AE2009DD6A3 /* Stickersview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC253229A92AE2009DD6A3 /* Stickersview.swift */; };
+		EFCE8FF929ABF3AD0061F3FA /* PairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE8FF829ABF3AD0061F3FA /* PairView.swift */; };
+		EFCE8FFB29ABF3D40061F3FA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE8FFA29ABF3D40061F3FA /* GameView.swift */; };
+		EFCE8FFF29ABF5710061F3FA /* RPSMultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE8FFE29ABF5710061F3FA /* RPSMultipeerSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		51EF79AA29AB955400D6F02D /* TreeAntGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeAntGame.swift; sourceTree = "<group>"; };
-		EF15515C29AAC51C00B969FB /* ConnnectFourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnnectFourViewModel.swift; sourceTree = "<group>"; };
 		EF15515E29AAC54200B969FB /* ConnnectFourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnnectFourView.swift; sourceTree = "<group>"; };
 		EF15516029AAC55900B969FB /* ConnectFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectFour.swift; sourceTree = "<group>"; };
 		EF228F2329A93095009F1F47 /* InearbyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InearbyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +51,9 @@
 		EFCC253029A92AE2009DD6A3 /* games.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = games.swift; sourceTree = "<group>"; };
 		EFCC253129A92AE2009DD6A3 /* caustomcards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = caustomcards.swift; sourceTree = "<group>"; };
 		EFCC253229A92AE2009DD6A3 /* Stickersview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stickersview.swift; sourceTree = "<group>"; };
+		EFCE8FF829ABF3AD0061F3FA /* PairView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairView.swift; sourceTree = "<group>"; };
+		EFCE8FFA29ABF3D40061F3FA /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		EFCE8FFE29ABF5710061F3FA /* RPSMultipeerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPSMultipeerSession.swift; sourceTree = "<group>"; };
 		EFEC137129AA491400B8F8AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,9 +128,11 @@
 				EFCC253029A92AE2009DD6A3 /* games.swift */,
 				EFCC252029A92AB5009DD6A3 /* InearbyApp.swift */,
 				EFCC253129A92AE2009DD6A3 /* caustomcards.swift */,
-				EF15515C29AAC51C00B969FB /* ConnnectFourViewModel.swift */,
 				EF15515E29AAC54200B969FB /* ConnnectFourView.swift */,
 				EF15516029AAC55900B969FB /* ConnectFour.swift */,
+				EFCE8FFE29ABF5710061F3FA /* RPSMultipeerSession.swift */,
+				EFCE8FF829ABF3AD0061F3FA /* PairView.swift */,
+				EFCE8FFA29ABF3D40061F3FA /* GameView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -253,13 +259,15 @@
 			files = (
 				EF15515F29AAC54200B969FB /* ConnnectFourView.swift in Sources */,
 				EFCC253529A92AE2009DD6A3 /* Stickersview.swift in Sources */,
-				EF15515D29AAC51C00B969FB /* ConnnectFourViewModel.swift in Sources */,
 				EFCC252329A92AB5009DD6A3 /* ContentView.swift in Sources */,
 				EF15516129AAC55A00B969FB /* ConnectFour.swift in Sources */,
 				EFCC252F29A92AC5009DD6A3 /* Homee.swift in Sources */,
+				EFCE8FF929ABF3AD0061F3FA /* PairView.swift in Sources */,
 				EFCC252129A92AB5009DD6A3 /* InearbyApp.swift in Sources */,
+				EFCE8FFF29ABF5710061F3FA /* RPSMultipeerSession.swift in Sources */,
 				EFCC253329A92AE2009DD6A3 /* games.swift in Sources */,
 				EFCC253429A92AE2009DD6A3 /* caustomcards.swift in Sources */,
+				EFCE8FFB29ABF3D40061F3FA /* GameView.swift in Sources */,
 				51EF79AB29AB955400D6F02D /* TreeAntGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

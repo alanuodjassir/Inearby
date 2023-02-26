@@ -4,7 +4,8 @@
 <dict>
 	<key>NSBonjourServices</key>
 	<array>
-		<string>_gt-conn4._tcp</string>
+		<string>_rps-service._tcp</string>
+		<string>_rps-service._udp</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

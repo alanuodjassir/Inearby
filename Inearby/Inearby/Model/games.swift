@@ -7,8 +7,7 @@
 
 import Foundation
 import SwiftUI
-
-// MARK: Movie Model & Sample Movies
+ 
 struct game: Identifiable,Equatable{
     var id = UUID().uuidString
     var gametitle: String

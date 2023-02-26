@@ -44,22 +44,29 @@ import SwiftUI
                 // MARK: Reduced After Applying Card Spacing & Padding
                 let cardWidth = size.width - (cardpadd1ng - s1pacing)
                 LazyHStack(spacing: s1pacing){
-                    ForEach(items,id: id){movie in
-                        // Since We Already Applied Spacing
-                        // And Again We're Adding it to Frame
-                        // So Simply Removing the Spacing
+                    ForEach(items,id: id){game in
+                     
                         
-                        let index = ndex(item: movie)
-                        content(movie,CGSize(width: size.width - cardpadd1ng, height: size.height))
-                        // MARK: Rotating Each View 5 Deg Multiplied With it's Index
-                        // And While Scrolling Setting it to 0, thus it will give some nice Circular Carousel Effect
+                        let index = ndex(item: game)
+                        content(game,CGSize(width: size.width - cardpadd1ng, height: size.height))
+                        
+                        
                             .rotationEffect(.init(degrees: Double(index) * 5), anchor: .bottom)
                             .rotationEffect(.init(degrees: rotation), anchor: .bottom)
                         // MARK: Apply After Rotation, Thus You will Get Smooth Effect
                             .offset(y: offset(index: index, cardWidth: cardWidth))
                             .frame(width: size.width - cardpadd1ng, height: size.height)
                             .contentShape(Rectangle())
+                        
+                        
                     }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 }
                 .padding(.horizontal,s1pacing)
                 .offset(x: scrolllim())
@@ -155,6 +162,11 @@ import SwiftUI
         }
     }
 
+struct caustomcards_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
 
  
 

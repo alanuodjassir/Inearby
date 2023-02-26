@@ -7,66 +7,57 @@
 
 import SwiftUI
 
-struct ConnnectFourView: View {
-    @ObservedObject var conn4VM: ConnnectFourViewModel
-    
+struct ConnectFourView: View {
+    @State var rpsSession: RPSMultipeerSession?
+    @State var currentView: Int = 0
+    @State var username = ""
+    @Binding var shouldshowonb : Bool
     var body: some View {
+        switch currentView {
+        case 1:
+            PairView(currentView: $currentView)
+                .environmentObject(rpsSession!)
+        default:
+            startViewBody
+        }
+    }
+    
+    var startViewBody: some View {
         VStack {
-            HStack {
-                ForEach (0..<7) { col in
-                    VStack {
-                        ForEach (0..<6) { i in
-                            Conn4Cell(piece: conn4VM.pieceAt(col: col, row: 5 - i))
-                        }
-                    }
-                    .contentShape(Rectangle())
-//                    .onTapGesture {
-//                        conn4VM.dropAndSend(at: col)
-//                    }
-                }
-            }
-            .aspectRatio(7/6, contentMode: .fit)
-            .layoutPriority(100)
-            
-            Button("Reset") {
-                conn4VM.reset()
-            }
-            .font(.largeTitle)
-            
-            Button("Advertise") {
-                conn4VM.advertise()
-            }
-            .font(.largeTitle)
-            
-            Button("Invite") {
-                conn4VM.invite()
-            }
-            .font(.largeTitle)
-        }
-        
-        .padding()
-    }
-}
+            Spacer()
+          
+            Text("Inearby, Play with anonymous around you. ")
+                .fontWeight(.heavy)
+                .font(.largeTitle)
+                .padding(.bottom,200)
+            Text("Choose a Nickname")
+                .font(.callout)
+                .fontWeight(.semibold)
+                .padding(.horizontal, 40)
+                .multilineTextAlignment(.center)
+            TextField("Nickname", text: $username)
+                .padding([.horizontal], 75.0)
+                .padding(.bottom, 24)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Button("Continue") {
+                rpsSession = RPSMultipeerSession(username: username)
+                currentView = 2
+            }.buttonStyle(BorderlessButtonStyle())
+                .padding(.horizontal, 30)
+                .padding(.vertical, 15)
+                .foregroundColor(.white)
+                .background(Color.accentColor)
+                .cornerRadius(12)
+                .disabled(username.isEmpty ? true : false)
+                
 
-struct Conn4Cell: View {
-    var piece: ConnectFour.Piece?
-    
-    var body: some View {
-        ZStack {
-            if let piece = piece {
-                if piece.player == .red {
-                    Circle().fill(Color.red)
-                } else {
-                    Circle().fill(Color.yellow)
-                }
-            }
-            Circle().stroke(lineWidth: 3)
+            Spacer()
         }
     }
 }
 
-struct ConnnectFourView_Previews: PreviewProvider {
+struct connnectFourView_Previews: PreviewProvider {
     static var previews: some View {
-        ConnnectFourView(conn4VM: ConnnectFourViewModel())
+        ConnectFourView(shouldshowonb: .constant(true))
     }
 }
