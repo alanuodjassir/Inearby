@@ -17,7 +17,6 @@ struct Home: View {
     @State var Indecscur: Int = 0
     
     var body: some View {
-        NavigationView{
             VStack(spacing: 15){
                 
                 viewofHeader()
@@ -39,14 +38,13 @@ struct Home: View {
                             Button {
                                 
                             } label: {
-                                NavigationLink (destination:TreeAntGame()){
                                     Image(game.picofgame)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: cardSize.width, height: cardSize.height)
                                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
                                     
-                                }}
+                                }
                         
                     }
                 
@@ -76,7 +74,7 @@ struct Home: View {
                     }
                     .ignoresSafeArea()
                 }
-            }}
+            }
 
 
 
