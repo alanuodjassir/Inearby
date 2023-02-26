@@ -11,8 +11,11 @@ import SwiftUI
 struct InearbyApp: App {
     var body: some Scene {
         WindowGroup {
-            let conn4VM = ConnnectFourViewModel()
-            ConnnectFourView(conn4VM: conn4VM)
+            Home()
+//            TreeAntGame()
+            
+//            let conn4VM = ConnnectFourViewModel()
+//            ConnnectFourView(conn4VM: conn4VM)
         }
     }
 }
