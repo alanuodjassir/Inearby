@@ -10,72 +10,73 @@ import SwiftUI
 
 struct Home: View {
     // MARK: View Properties
-//    @State var currentTab: Tab = .home
+    //    @State var currentTab: Tab = .home
     @Namespace var animation
-
+    
     // MARK: Carousel Properties
     @State var Indecscur: Int = 0
-
+    
     var body: some View {
-        VStack(spacing: 15){
-
-            viewofHeader()
-
-
-
-            (Text("Games")
-                .fontWeight(.semibold)
-
-            )
-            .font(.title2)
-            .frame(maxWidth: .infinity,alignment: .leading)
-            .padding(.top,15)
-
-
-            casutomcards(index: $Indecscur, items: Games, cardPadding: 35, id: \.id) { game,cardSize in
-                // MARK: YOUR CUSTOM CELL VIEW
-
-
-                    Button {
-
-                    } label: {
-                        Image(game.picofgame)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: cardSize.width, height: cardSize.height)
-                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-
+        NavigationView{
+            VStack(spacing: 15){
+                
+                viewofHeader()
+                
+                
+                
+                (Text("Games")
+                    .fontWeight(.semibold)
+                 
+                )
+                .font(.title2)
+                .frame(maxWidth: .infinity,alignment: .leading)
+                .padding(.top,15)
+                
+                
+                    casutomcards(index: $Indecscur, items: Games, cardPadding: 35, id: \.id) { game,cardSize in
+                        // MARK: YOUR CUSTOM CELL VIEW
+                            
+                            Button {
+                                
+                            } label: {
+                                NavigationLink (destination:TreeAntGame()){
+                                    Image(game.picofgame)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: cardSize.width, height: cardSize.height)
+                                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                    
+                                }}
+                        
                     }
-
-                }
-
-
-
-
-        }
-        .padding([.horizontal,.top],15)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .background {
-            GeometryReader{proxy in
-                let size = proxy.size
-
-                TabView(selection: $Indecscur) {
-    ForEach(Games.indices,id: \.self){index in
-    Image(Games[index].picofgame)
-        .resizable()
-        .aspectRatio(contentMode: .fill)
-    .frame(width: size.width, height: size.height)
-            .clipped()
-                    }
-                }
-               Rectangle()
-                    .fill(.ultraThinMaterial)
-
-
+                
+                
+                
+                
             }
-            .ignoresSafeArea()
-        }
-    }
+            .padding([.horizontal,.top],15)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .background {
+                GeometryReader{proxy in
+                    let size = proxy.size
+                    
+                    TabView(selection: $Indecscur) {
+                        ForEach(Games.indices,id: \.self){index in
+                            Image(Games[index].picofgame)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: size.width, height: size.height)
+                                .clipped()
+                        }
+                    }
+                        Rectangle()
+                            .fill(.ultraThinMaterial)
+                        
+                        
+                    }
+                    .ignoresSafeArea()
+                }
+            }}
 
 
 
