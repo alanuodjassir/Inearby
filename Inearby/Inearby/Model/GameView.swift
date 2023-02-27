@@ -12,166 +12,298 @@ enum Result {
     case win, loss, tie
 }
 
-struct GameView: View {
-    @EnvironmentObject var rpsSession: RPSMultipeerSession
-    
+struct GameView: View{
     @Binding var currentView: Int
-    @State var timeLeft = 10
-    @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @EnvironmentObject var rpsSession: RPSMultipeerSession
+
     
-    @State var currentMove: Move = .unknown
-    @State var opponentMove: Move = .unknown
-    @State var showResult: Bool = false
-    @State var result: Result = .tie
-    @State var resultMessage: String = ""
+    @State private var text = "Tree"
+    @State private var FirstUserScore = 0
+    @State var SecondUserScore = 0
+    @State private var timerC: Timer?  //nil
+    @State private var exitGamePopup = false
+    @State private var winPopup = false
+    @State private var losePopup = false
+   // @State private var drawPopup = false
     
     var body: some View {
-        ZStack {
-            VStack(alignment: .center) {
-                // Opponent - 🪨 📄 ✂️
-                Image(opponentMove.description)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100)
-                    .padding(.top)
-                    .padding()
+        ZStack{LinearGradient(colors: [.init("BabyBlue")], startPoint: .zero, endPoint: .zero).ignoresSafeArea()
+                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.init("DarkBlue"),lineWidth: 6).frame(width: 350,height: 700))
+
+            HStack{
+                Text("\(FirstUserScore)").padding(70)
+                Text(":")
+                Text("\(SecondUserScore)").padding(70)
+            }.offset(y:-280).foregroundColor(.white).font(.system(size: 30, weight: .bold))
+            
+            Button(action: {
+                withAnimation(.linear(duration: 0.1)) {
+                    self.exitGamePopup = true
+                }
                 
-                // Timer - 10
-                Text("\(timeLeft)")
-                    .font(.system(size: 30))
-                    .onReceive(timer) { input in
-                        if (timeLeft > 0) {
-                            timeLeft -= 1
-                        } else {
-                            timeLeft = 10
-                            timer.upstream.connect().cancel()
-                            // Call timer.upstream.connect() to restart the timer
-                            switch rpsSession.receivedMove {
-                            case .rock:
-                                opponentMove = .rock
-                                break
-                            case .paper:
-                                opponentMove = .paper
-                                break
-                            case .scissors:
-                                opponentMove = .scissors
-                                break
-                            default:
-                                // TODO: Invalid, big red X or something idk
-                                opponentMove = .unknown
-                                break
+            }, label: {
+                Text("Exit Game")
+            }).frame(width: 300, height: 60)
+                .background(Color.init("DarkBlue"))
+                .foregroundColor(Color.white)
+                .cornerRadius(10)
+                .font(.system(size: 30, weight: .bold))
+                .multilineTextAlignment(.center).offset(y:280)
+            
+            VStack{
+                Spacer().frame(height:160)
+                HStack{
+                    Button(action: {
+                        if self.timerC == nil && text == "Tree" { //If the timer is nil, it means >> no previous press has happened in the current interval
+                            self.FirstUserScore += 1
+                            self.timerC = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+                                self.timerC = nil
                             }
-                            //TODO: Show winning/losing screen and restart button
-                            result = score(opponentMove: opponentMove, ourMove: currentMove)
-                            if (result == .win) {
-                                resultMessage = "You won!"
-                            } else if (result == .loss) {
-                                resultMessage = "You lost!"
-                            } else {
-                                resultMessage = "It's a tie!"
-                            }
-                            showResult = true
                         }
-                    }
-                // Player - Move
-                Image(currentMove.description)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100)
-                    .padding()
-                    .padding(.bottom, 20)
-                // Moves - Moves
-                HStack {
-                    Button(action: {
-                        currentMove = .rock
-                        rpsSession.send(move: .rock)
-                    }, label: {
-                        Image("Rock")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40)
-                    })
-                        .buttonStyle(BorderlessButtonStyle())
-                        .padding()
+                        else if FirstUserScore == 2 {
+                            self.winPopup = true
+                        }
+
+                    }){
+                        Image("Tree").resizable()
+                            .aspectRatio(contentMode: .fill).frame(width:130 ,height: 180).background(Color.init("DarkBlue")).cornerRadius(15)
+                    }.padding()
                     
                     Button(action: {
-                        currentMove = .paper
-                        rpsSession.send(move: .paper)
-                    }, label: {
-                        Image("Paper")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40)
-                    })
-                        .buttonStyle(BorderlessButtonStyle())
-                        .padding()
-                    
-                    Button(action: {
-                        currentMove = .scissors
-                        rpsSession.send(move: .scissors)
-                    }, label: {
-                        Image("Scissors")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40)
-                    })
-                        .buttonStyle(BorderlessButtonStyle())
-                        .padding()
+                        if self.timerC == nil && text == "Ant" { //If the timer is nil, it means >> no previous press has happened in the current interval
+                            self.FirstUserScore += 1
+                            self.timerC = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+                                self.timerC = nil
+                            }
+                        }
+                                        else if FirstUserScore == 2 {
+                                            self.winPopup = true
+                                        }
+                    }){
+                        Image("Ant").resizable()
+                            .aspectRatio(contentMode: .fit).frame(width:130 ,height: 180).background(Color.init("Blue")).cornerRadius(15)
+                        
+                    }.padding()
                 }
             }
-            if (showResult) {
-                VStack(alignment: .center, spacing: 10) {
-                    Text(resultMessage)
-                        .fontWeight(.heavy)
-                    Text("Would you like to play again?")
-                        .fontWeight(.regular)
-                    Button("Yes") {
-                        showResult = false
-                        //TODO: Send restart message to peer, wait for response
-                    }
-                    Button("No") {
-                        rpsSession.session.disconnect()
-                    }
-                }.zIndex(1)
-                    .frame(width: 400, height: 500)
-                    .background(Color.white)
-                    .cornerRadius(12)
+            
+            if $winPopup.wrappedValue {
+                WinPopupfunc()
             }
+             
+                 if $exitGamePopup.wrappedValue {
+                     
+                     ExitPopupfunc()
+                 }
+            
+               
+              
+                Text(text)
+                    .frame(width: 150, height: 60)
+                    .background(Color.init("DarkBlue"))
+                    .foregroundColor(Color.white)
+                    .cornerRadius(10)
+                    .font(.system(size: 30, weight: .bold))
+                    .offset(y:-170)
+                    .onAppear {
+                        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                            self.text =   self.text == "Tree" ? "Ant" : "Tree"
+                        }// self.text = bool? true : false
+                    }
+                
         }
     }
     
-    func score(opponentMove: Move, ourMove: Move) -> Result {
-        switch opponentMove {
-        case .rock:
-            if ourMove == .scissors {
-                return .loss
-            } else if ourMove == .paper {
-                return .win
-            } else {
-                return .tie
+    private func LosePopupfunc() -> some View {
+        
+        VStack (spacing : 5) {
+            
+            Text("You Lose!").font(.system(size: 24, weight: .bold)).foregroundColor(Color.init("DarkBlue")).padding()
+        
+//                Image("coins").resizable()
+//                    .aspectRatio(contentMode: .fit).frame(width:130 ,height: 100)
+            
+            HStack{
+                
+                Button(action: {
+    
+                        self.losePopup = false
+       
+                }, label: {
+                    Text("Back").frame(width: 100, height: 40)
+                        .background(Color.init("DarkBlue"))
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                }).padding()
+                
+                Button(action: {
+                        
+                        self.losePopup = false
+                    
+                }, label: {
+                    Text("Play Again").frame(width: 100, height: 40)
+                        .background(Color.init("DarkBlue"))
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                }).padding()
             }
-        case .paper:
-            if ourMove == .rock {
-                return .loss
-            } else if ourMove == .scissors {
-                return .win
-            } else {
-                return .tie
-            }
-        case .scissors:
-            if ourMove == .paper {
-                return .loss
-            } else if ourMove == .rock {
-                return .win
-            } else {
-                return .tie
-            }
-        default:
-            // Invalid move somewhere
-            return .tie
-        }
+        }.padding()
+            .frame(width: 300, height: 270)
+            .background(Color.init("PopupColor"))
+            .cornerRadius(20)
     }
+    
+    
+    // in my game there is no chance for DRAW , that will be for the XO Game
+    
+    
+//    private func DrawPopupfunc() -> some View {
+//
+//        VStack (spacing : 5) {
+//
+//            Text("Draw").font(.system(size: 24, weight: .bold)).foregroundColor(Color.init("DarkBlue")).padding()
+//
+////                Image("coins").resizable()
+////                    .aspectRatio(contentMode: .fit).frame(width:130 ,height: 100)
+//
+//            HStack{
+//
+//                Button(action: {
+//
+//                        self.drawPopup = false
+//
+//                }, label: {
+//                    Text("Back").frame(width: 100, height: 40)
+//                        .background(Color.init("DarkBlue"))
+//                        .foregroundColor(Color.white)
+//                        .cornerRadius(10)
+//                }).padding()
+//
+//                Button(action: {
+//
+//                        self.drawPopup = false
+//
+//                }, label: {
+//                    Text("Play Again").frame(width: 100, height: 40)
+//                        .background(Color.init("DarkBlue"))
+//                        .foregroundColor(Color.white)
+//                        .cornerRadius(10)
+//                }).padding()
+//            }
+//        }.padding()
+//            .frame(width: 300, height: 270)
+//            .background(Color.init("PopupColor"))
+//            .cornerRadius(20)
+//    }
+    
+    private func WinPopupfunc() -> some View {
+        
+        VStack (spacing : 5) {
+            
+            Text("You Win!").font(.system(size: 24, weight: .bold)).foregroundColor(Color.init("DarkBlue")).padding()
+        
+                Image("coins").resizable()
+                    .aspectRatio(contentMode: .fit).frame(width:130 ,height: 100)
+            
+            Text("10 Coins").font(.system(size: 16, weight: .bold)).foregroundColor(Color.init("DarkBlue"))
+            
+            HStack{
+                
+                Button(action: {
+    
+                        self.winPopup = false
+       
+                }, label: {
+                    Text("Back").frame(width: 100, height: 40)
+                        .background(Color.init("DarkBlue"))
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                }).padding()
+                
+                Button(action: {
+                        
+                        self.winPopup = false
+                    
+                }, label: {
+                    Text("Play Again").frame(width: 100, height: 40)
+                        .background(Color.init("DarkBlue"))
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                }).padding()
+            }
+        }.padding()
+            .frame(width: 300, height: 270)
+            .background(Color.init("PopupColor"))
+            .cornerRadius(20)
+    }
+    
+    
+    private func ExitPopupfunc() -> some View {
+      
+
+        
+        VStack (spacing : 5) {
+           
+            
+            
+            Text("Exit?").font(.system(size: 24,  weight: .bold)).foregroundColor(Color.init("DarkBlue")).padding()
+            ZStack {
+                RoundedRectangle(cornerRadius: 15).fill(Color.init("BabyGray")).frame(width: 260, height: 120)
+                Text("Are you sure you want to quit the game?").font(.headline).foregroundColor(Color.init("DarkBlue")).multilineTextAlignment(.center)
+                
+            }
+            HStack{
+                
+                Button(action: {
+                    
+                    withAnimation {
+                        
+                        self.exitGamePopup.toggle()
+                     
+                    }
+                }, label: {
+                    Text("Yes").frame(width: 100, height: 40)
+                        .background(Color.green)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                }).padding()
+                
+                Button(action: {
+                    
+                    withAnimation {
+                        
+                        self.exitGamePopup.toggle()
+                    }
+                }, label: {
+                    Text("No").frame(width: 100, height: 40)
+                        .background(Color.red)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                }).padding()
+            }
+        }
+        
+        .padding()
+        .frame(width: 300, height: 270)
+        .background(Color.init("PopupColor"))
+        .cornerRadius(20)
+        //.shadow(radius: 30)
+ 
+        
+    }
+    func exit() {
+        
+        
+          if exitGamePopup == true {
+              Homee()
+          }
+        
+    }
+    
+    
+    
 }
+
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
