@@ -12,11 +12,12 @@
 		EF15516129AAC55A00B969FB /* ConnectFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF15516029AAC55900B969FB /* ConnectFour.swift */; };
 		EF228F2629A93095009F1F47 /* InearbyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF228F2529A93095009F1F47 /* InearbyTests.swift */; };
 		EF4E31D829A93D37007972BA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF4E31D729A93D37007972BA /* Info.plist */; };
+		EFBB34D029ACE72C0011F2EC /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBB34CF29ACE72C0011F2EC /* ResultView.swift */; };
+		EFBB34D229ACE7FF0011F2EC /* Homee.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBB34D129ACE7FF0011F2EC /* Homee.swift */; };
 		EFCC252129A92AB5009DD6A3 /* InearbyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC252029A92AB5009DD6A3 /* InearbyApp.swift */; };
 		EFCC252329A92AB5009DD6A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC252229A92AB5009DD6A3 /* ContentView.swift */; };
 		EFCC252529A92AB6009DD6A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFCC252429A92AB6009DD6A3 /* Assets.xcassets */; };
 		EFCC252829A92AB6009DD6A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFCC252729A92AB6009DD6A3 /* Preview Assets.xcassets */; };
-		EFCC252F29A92AC5009DD6A3 /* Homee.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC252E29A92AC4009DD6A3 /* Homee.swift */; };
 		EFCC253329A92AE2009DD6A3 /* games.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC253029A92AE2009DD6A3 /* games.swift */; };
 		EFCC253429A92AE2009DD6A3 /* caustomcards.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC253129A92AE2009DD6A3 /* caustomcards.swift */; };
 		EFCC253529A92AE2009DD6A3 /* Stickersview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC253229A92AE2009DD6A3 /* Stickersview.swift */; };
@@ -42,12 +43,13 @@
 		EF228F2329A93095009F1F47 /* InearbyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InearbyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF228F2529A93095009F1F47 /* InearbyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InearbyTests.swift; sourceTree = "<group>"; };
 		EF4E31D729A93D37007972BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFBB34CF29ACE72C0011F2EC /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		EFBB34D129ACE7FF0011F2EC /* Homee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homee.swift; sourceTree = "<group>"; };
 		EFCC251D29A92AB5009DD6A3 /* Inearby.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inearby.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCC252029A92AB5009DD6A3 /* InearbyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InearbyApp.swift; sourceTree = "<group>"; };
 		EFCC252229A92AB5009DD6A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EFCC252429A92AB6009DD6A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFCC252729A92AB6009DD6A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		EFCC252E29A92AC4009DD6A3 /* Homee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Homee.swift; sourceTree = "<group>"; };
 		EFCC253029A92AE2009DD6A3 /* games.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = games.swift; sourceTree = "<group>"; };
 		EFCC253129A92AE2009DD6A3 /* caustomcards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = caustomcards.swift; sourceTree = "<group>"; };
 		EFCC253229A92AE2009DD6A3 /* Stickersview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stickersview.swift; sourceTree = "<group>"; };
@@ -133,6 +135,8 @@
 				EFCE8FFE29ABF5710061F3FA /* RPSMultipeerSession.swift */,
 				EFCE8FF829ABF3AD0061F3FA /* PairView.swift */,
 				EFCE8FFA29ABF3D40061F3FA /* GameView.swift */,
+				EFBB34CF29ACE72C0011F2EC /* ResultView.swift */,
+				EFBB34D129ACE7FF0011F2EC /* Homee.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,7 +146,6 @@
 			children = (
 				EFCC253229A92AE2009DD6A3 /* Stickersview.swift */,
 				EFCC252229A92AB5009DD6A3 /* ContentView.swift */,
-				EFCC252E29A92AC4009DD6A3 /* Homee.swift */,
 				51EF79AA29AB955400D6F02D /* TreeAntGame.swift */,
 			);
 			path = View;
@@ -257,13 +260,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFBB34D229ACE7FF0011F2EC /* Homee.swift in Sources */,
 				EF15515F29AAC54200B969FB /* ConnnectFourView.swift in Sources */,
 				EFCC253529A92AE2009DD6A3 /* Stickersview.swift in Sources */,
 				EFCC252329A92AB5009DD6A3 /* ContentView.swift in Sources */,
 				EF15516129AAC55A00B969FB /* ConnectFour.swift in Sources */,
-				EFCC252F29A92AC5009DD6A3 /* Homee.swift in Sources */,
 				EFCE8FF929ABF3AD0061F3FA /* PairView.swift in Sources */,
 				EFCC252129A92AB5009DD6A3 /* InearbyApp.swift in Sources */,
+				EFBB34D029ACE72C0011F2EC /* ResultView.swift in Sources */,
 				EFCE8FFF29ABF5710061F3FA /* RPSMultipeerSession.swift in Sources */,
 				EFCC253329A92AE2009DD6A3 /* games.swift in Sources */,
 				EFCC253429A92AE2009DD6A3 /* caustomcards.swift in Sources */,

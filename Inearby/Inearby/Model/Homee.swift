@@ -1,20 +1,26 @@
 //
 //  Homee.swift
-//  sad
+//  Inearby
 //
-//  Created by Alanoud Saleh on 28/07/1444 AH.
+//  Created by Alanoud Saleh on 07/08/1444 AH.
 //
 
 
 import SwiftUI
+import Foundation
 
-struct Homee: View {
+
+struct Home: View {
     // MARK: View Properties
     //    @State var currentTab: Tab = .home
     @Namespace var animation
  
-    @AppStorage("key3")  var shouldshowonb = true
+    @AppStorage("key7")  var shouldshowonb = true
     @State var Indecscur: Int = 0
+    
+    @State private var fullCoverItem: game? = nil
+
+    
     
     var body: some View {
             VStack(spacing: 15){
@@ -32,19 +38,18 @@ struct Homee: View {
                 .padding(.top,15)
                 
                 
-                    casutomcards(index: $Indecscur, items: Games, cardPadding: 35, id: \.id) { game,cardSize in
+                casutomcards(index: $Indecscur, items: Games, cardPadding: 35, id: \.id) { Games,cardSize in
                         // MARK: YOUR CUSTOM CELL VIEW
                             
-                            Button {
-
-                            } label: {
-                                    Image(game.picofgame)
+                                    Image(Games.picofgame)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: cardSize.width, height: cardSize.height)
                                         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                        .onTapGesture {
+                                            fullCoverItem = Games
+                                        }
 
-                                }
                         
                         
                         
@@ -55,9 +60,6 @@ struct Homee: View {
                 
                 
             }.ignoresSafeArea()
-            .fullScreenCover(isPresented: $shouldshowonb ){
-            ConnectFourView(shouldshowonb: $shouldshowonb)
-                 }.ignoresSafeArea(.all)
             .padding([.horizontal,.top],15)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background {
@@ -80,7 +82,21 @@ struct Homee: View {
                     }
                     .ignoresSafeArea()
                 }
+            .fullScreenCover(item: $fullCoverItem) { item in
+
+                if item.picofgame == "game1" {
+                    ResultView(tile: "game2")
+                } else if item.picofgame == "game2" {
+                    ResultView(tile: "game1")
+
+
+                }
+
+                
             }
+
+            }
+
 
 
 
@@ -127,9 +143,9 @@ struct Homee: View {
 
 struct AnotherView : View {
 
-    let colors = ["sticker1","sticker2"]
+ 
     var body: some View {
-        Stickersview()
+        Text("hey")
     }
 
 
@@ -140,7 +156,7 @@ struct AnotherView : View {
 
 }
 
-struct Home_Previews: PreviewProvider {
+struct homee_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }

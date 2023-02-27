@@ -69,6 +69,6 @@ struct ConnectFourView: View {
 
 struct connnectFourView_Previews: PreviewProvider {
     static var previews: some View {
-        ConnectFourView(shouldshowonb: .constant(true))
+      Home()
     }
 }

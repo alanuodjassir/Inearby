@@ -114,7 +114,7 @@ struct GameView: View{
                     }
                 
                     }.fullScreenCover(isPresented: $isgamepre) {
-                        Homee()
+                        Home()
                     }
         }
         
