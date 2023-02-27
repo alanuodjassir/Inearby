@@ -8,12 +8,12 @@
 
 import SwiftUI
 
-struct Home: View {
+struct Homee: View {
     // MARK: View Properties
     //    @State var currentTab: Tab = .home
     @Namespace var animation
  
-    @AppStorage("key7")  var shouldshowonb = true
+    @AppStorage("key3")  var shouldshowonb = true
     @State var Indecscur: Int = 0
     
     var body: some View {
@@ -97,7 +97,7 @@ struct Home: View {
 
         HStack{
             VStack(alignment: .leading, spacing: 6) {
-                Text(NSUserName())
+                Text("")
                     .fontWeight(.semibold)
 
                 .font(.title2)
