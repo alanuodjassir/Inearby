@@ -10,13 +10,12 @@ import MultipeerConnectivity
 import os
 
 enum Move: String, CaseIterable, CustomStringConvertible {
-    case rock, paper, scissors, unknown
+    case Ant, Tree, unknown
     
     var description : String {
         switch self {
-        case .rock: return "Rock"
-        case .paper: return "Paper"
-        case .scissors: return "Scissors"
+        case .Ant: return "Ant"
+        case .Tree: return "Tree"
         default: return "Thinking"
         }
       }
