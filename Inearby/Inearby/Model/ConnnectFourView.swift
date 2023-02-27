@@ -13,10 +13,7 @@ struct ConnectFourView: View {
     @Binding var shouldshowonb : Bool
     @AppStorage("Username") var username: String = ""
     var body: some View {
-     
-        
-        
-        
+
         switch currentView {
         case 1:
             PairView(currentView: $currentView)

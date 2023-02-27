@@ -16,7 +16,7 @@ struct GameView: View{
     @State var isgamepre = false
     @Binding var currentView: Int
     @EnvironmentObject var rpsSession: RPSMultipeerSession
-    
+    @AppStorage("Username") var username: String = ""
     @State var currentMove: Move = .unknown
     @State private var text = "Tree"
     @State private var FirstUserScore = 0
@@ -25,17 +25,18 @@ struct GameView: View{
     @State private var exitGamePopup = false
     @State private var winPopup = false
     @State private var losePopup = false
-    // @State private var drawPopup = false
+  //@State private var drawPopup = false
     
     var body: some View {
                     ZStack{LinearGradient(colors: [.init("BabyBlue")], startPoint: .zero, endPoint: .zero).ignoresSafeArea()
                     .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.init("DarkBlue"),lineWidth: 6).frame(width: 350,height: 700))
-                
-                HStack{
-                    Text("\(FirstUserScore)").padding(70)
-                    Text(":")
-                    Text("\(SecondUserScore)").padding(70)
-                }.offset(y:-280).foregroundColor(.white).font(.system(size: 30, weight: .bold))
+                        
+                            HStack{
+                                Text("\(FirstUserScore)").padding(70)
+                                Text(":")
+                                Text("\(SecondUserScore)").padding(70)
+                            }.offset(y:-280).foregroundColor(.white).font(.system(size: 30, weight: .bold))
+                        Text(username).offset(x:-90,y:-240)
                 
                 Button(action: {
                     withAnimation(.linear(duration: 0.1)) {

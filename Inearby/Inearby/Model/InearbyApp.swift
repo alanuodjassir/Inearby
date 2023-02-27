@@ -11,7 +11,9 @@ import SwiftUI
 struct InearbyApp: App {
     var body: some Scene {
         WindowGroup {
-Home()
+            GameView(currentView: .constant(0))
+                .environmentObject(RPSMultipeerSession(username: "e"))
+//Home()
         }
     }
 }
